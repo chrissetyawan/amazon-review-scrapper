@@ -5,7 +5,9 @@ const puppeteer = require('puppeteer');
 // Find a data by Id
 exports.findById = async (req, res) => {
     const id = req.params.id;
-    const url = 'https://www.amazon.com/product-reviews/' + id;
+    const pageNumber = req.query.pageNumber;
+
+    const url = 'https://www.amazon.com/product-reviews/' + id + "?pageNumber=" + pageNumber;
 
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
@@ -23,7 +25,7 @@ exports.findById = async (req, res) => {
                 reviewJson.author = element.querySelector('span.a-profile-name').innerText;
                 reviewJson.avatar = element.querySelector('div.a-profile-avatar > img').getAttribute("src");
                 reviewJson.authorLink = "https://www.amazon.com/" + element.querySelector('a.a-profile').getAttribute("href");
-                // reviewJson.verified = element.querySelector('span.a-size-mini.a-color-state.a-text-bold').innerText;
+                
                 reviewJson.verified = "No";
                 if(element.querySelector('span.a-size-mini.a-color-state.a-text-bold').innerText === 'Verified Purchase'){
                     reviewJson.verified = "Yes";

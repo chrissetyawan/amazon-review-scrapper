@@ -4,11 +4,20 @@
             <br /><br />
             <h3>Amazon Review Scrapper</h3>
 
-            <div class="search">
-              <input type="text" class="col-md-2 input-search" required v-model="asin" placeholder="ASIN">
-              <button v-on:click="search" class="btn btn-success button-search" style="">Search</button>
+            <div class="row navigation col-md-12">
+              <div class="search col-md-6">
+                <input type="text" class="col-md-2 input-search" v-model="asin" placeholder="ASIN">
+                <span v-on:click="search" class="btn btn-success button-search" style="">Search</span>
+              </div>
+
+              <div class="section-pagination col-md-6">
+                <span v-on:click="prev" class="btn btn-success btn-pagination">Prev</span>
+                Page <input type="number" class="col-md-2 input-page" v-model="pageNumber" min="1">
+                <span v-on:click="goPage" class="btn btn-success btn-pagination">Go</span>
+                <span v-on:click="next" class="btn btn-success btn-pagination">Next</span>
+              </div>
             </div>
-            
+
             <div v-for="(review, index) in reviews" :key="index" class="col-md-12">
               <div class="row col-md-12">
                 <div class="col-md-3 coldata">
@@ -54,15 +63,16 @@ export default {
   data() {
     return {
       asin: 'B003BEDQL2', //default
-      reviews: []
+      reviews: [],
+      pageNumber : 1
     };
   },
   methods: {
     /* eslint-disable */
-    getList(asin) {
+    getList() {
       this.reviews = [];
       http
-        .get("/review/" + asin)
+        .get("/review/" + this.asin + "?pageNumber=" + this.pageNumber)
         .then(response => {
           this.reviews = response.data.reviews.sort((a, b) => new Date(b.date) - new Date(a.date))
         })
@@ -71,25 +81,36 @@ export default {
         });
     },
     search() {
-      this.getList(this.asin);
+      this.pageNumber = 1;
+      this.getList();
+    },
+    prev() {
+      if (this.pageNumber > 1) {
+        this.pageNumber--;
+        this.getList();
+      }
+    },
+    next() {
+      this.pageNumber++;
+      this.getList();
+    },
+    goPage() {
+      if (this.pageNumber >= 1) {
+        this.getList();
+      }
     }
   },
   mounted() {
-    this.getList(this.asin);
+    this.$nextTick(() => {
+      this.getList();
+    })
+    
   }
 };
 </script>
 
 <style>
-.search {
-  margin : 60px;
-}
-.input-search {
-  padding:5px;vertical-align: middle;
-}
-.button-search {
-  margin-left:20px
-}
+
 .list {
   text-align: center;
   margin: auto;
@@ -111,9 +132,37 @@ export default {
 }
 .col-md,
 .col-md-2,
-.col-md-3,
-.col-md-12 {
+.col-md-3 {
   padding-right: 0px;
   padding-left: 0px;
+}
+
+.navigation {
+  margin : 60px 0px;
+}
+.search {
+  text-align: left;
+  padding-left: 0px;
+}
+.input-search {
+  min-width: 200px !important;
+  padding:5px;
+}
+.button-search {
+  margin-left:20px
+}
+
+.section-pagination {
+  text-align: right;
+}
+.input-page {
+  padding:5px;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+.btn-pagination {
+  margin-right:10px;
+  cursor: pointer;
+  width: 70px;
 }
 </style>

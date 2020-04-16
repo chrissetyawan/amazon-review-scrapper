@@ -79,13 +79,15 @@ class GoutteController extends Controller
         ], 200);
     }
 
-    public function show($id)
+    public function show($id, Request $request)
     {
         if (!$id) {
            throw new HttpException(400, "Invalid id");
         }
 
-        $html = file_get_html('https://www.amazon.com/product-reviews/' . $id);
+        $pageNumber = $request->input('pageNumber');
+
+        $html = file_get_html('https://www.amazon.com/product-reviews/' . $id . "?pageNumber=" . $pageNumber);
         $array = array();
         
         foreach($html->find('.review') as $element) {
