@@ -41,7 +41,7 @@
                   Comment Count:  {{ review.commentCount }}
                 </div>
               </div>
-              <div class="row col-md-12 ">
+              <div>
                 <div class="title">
                   <a v-bind:href="review.reviewLink" target="_blank">
                    {{ review.title }}
@@ -159,6 +159,7 @@ export default {
   padding:5px;
   vertical-align: middle;
   margin-right: 20px;
+  width: 70px;
 }
 .btn-pagination {
   margin-right:10px;
