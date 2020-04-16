@@ -9,8 +9,8 @@
               <button v-on:click="search" class="btn btn-success button-search" style="">Search</button>
             </div>
             
-            <div v-for="(review, index) in reviews" :key="index">
-              <div class="row">
+            <div v-for="(review, index) in reviews" :key="index" class="col-md-12">
+              <div class="row col-md-12">
                 <div class="col-md-3 coldata">
                   Date : {{ review.date | formatDate}}
                 </div>
@@ -19,16 +19,16 @@
                    Author: {{ review.author }}
                   </a>
                 </div>
-                <div class="col-md coldata">
+                <div class="col-md coldata" style="text-align: right;">
                    Verified: {{ review.verified | formatBoolean }}
                 </div>
-                <div class="col-md coldata">
+                <div class="col-md coldata" style="text-align: right;">
                    Photo : {{ review.pictureIncluded  | formatBoolean }}
                 </div>
-                <div class="col-md coldata">
+                <div class="col-md coldata" style="text-align: right;">
                    Rating: {{ review.rating }}
                 </div>
-                <div class="col-md-2 coldata">
+                <div class="col-md-2 coldata" style="text-align: right;">
                   Comment Count:  {{ review.commentCount }}
                 </div>
               </div>
@@ -60,6 +60,7 @@ export default {
   methods: {
     /* eslint-disable */
     getList(asin) {
+      this.reviews = [];
       http
         .get("/review/" + asin)
         .then(response => {
@@ -74,7 +75,7 @@ export default {
     }
   },
   mounted() {
-    this.getList("B003BEDQL2");
+    this.getList(this.asin);
   }
 };
 </script>
@@ -95,14 +96,24 @@ export default {
 }
 .coldata {
   text-align: left;
+  font-size: 13px;
 }
 .title {
+  font-size: 20px;
   text-align:left;
-  margin-top:20px;
+  margin-top:15px;
   margin-bottom:10px;
 }
 .content {
-  text-align:left;
-  margin-bottom:40px;
+  font-size: 15px;
+  text-align:justify;
+  margin-bottom:80px;
+}
+.col-md,
+.col-md-2,
+.col-md-3,
+.col-md-12 {
+  padding-right: 0px;
+  padding-left: 0px;
 }
 </style>

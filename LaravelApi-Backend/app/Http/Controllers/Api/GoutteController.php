@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Goutte\Client;
-use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
