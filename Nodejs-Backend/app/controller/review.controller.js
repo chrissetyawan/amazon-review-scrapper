@@ -24,14 +24,14 @@ exports.findById = async (req, res) => {
                 reviewJson.avatar = element.querySelector('div.a-profile-avatar > img').getAttribute("src");
                 reviewJson.authorLink = "https://www.amazon.com/" + element.querySelector('a.a-profile').getAttribute("href");
                 // reviewJson.verified = element.querySelector('span.a-size-mini.a-color-state.a-text-bold').innerText;
-                reviewJson.verified = false;
+                reviewJson.verified = "No";
                 if(element.querySelector('span.a-size-mini.a-color-state.a-text-bold').innerText === 'Verified Purchase'){
-                    reviewJson.verified = true;
+                    reviewJson.verified = "Yes";
                 }
                 
-                reviewJson.pictureIncluded = false;
+                reviewJson.pictureIncluded = "No";
                 if(element.querySelector('div.review-image-tile-section')){
-                    reviewJson.pictureIncluded = true;
+                    reviewJson.pictureIncluded = "Yes";
                 }
 
                 reviewJson.title = element.querySelector('.review-title').innerText;
