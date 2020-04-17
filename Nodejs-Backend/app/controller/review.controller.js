@@ -55,33 +55,6 @@ exports.findById = async (req, res) => {
             reviews.push(reviewJson);
         });
 
-        // let rating = {};
-        // Elms = await document.querySelectorAll('tr.a-histogram-row');
-        // Elms.forEach( async (element) => {
-        //     const name = element.querySelector('td.aok-nowrap > span.a-size-base > a').innerText.trim().replace('%', '');
-        //     if (name === '5 star')
-        //         rating.five = element.querySelector('td.a-text-right.a-nowrap > span.a-size-base > a').innerText.replace('%', '');
-        //     if (name === '4 star')
-        //         rating.four = element.querySelector('td.a-text-right.a-nowrap > span.a-size-base > a').innerText.replace('%', '');
-        //     if (name === '3 star')
-        //         rating.three = element.querySelector('td.a-text-right.a-nowrap > span.a-size-base > a').innerText.replace('%', '');
-        //     if (name === '2 star')
-        //         rating.two = element.querySelector('td.a-text-right.a-nowrap > span.a-size-base > a').innerText.replace('%', '');
-        //     if (name === '1 star')
-        //         rating.one = element.querySelector('td.a-text-right.a-nowrap > span.a-size-base > a').innerText.replace('%', '');
-        // })
-
-        // let total = document.body.querySelector('.a-size-base.a-color-secondary').innerText.replace('customer ratings', '').trim();
-        // total = total.replace(',', '').replace('.', '')
-        // rating.total2 = total
-        // rating.one = parseInt(rating.one / 100 * total);
-        // rating.two = parseInt(rating.two / 100 * total);
-        // rating.three = parseInt(rating.three / 100 * total);
-        // rating.four = parseInt(rating.four / 100 * total);
-        // rating.five = parseInt(rating.five / 100 * total);
-        // rating.total = rating.one + rating.two + rating.three + rating.four + rating.five
-        // return {reviews, rating};
-
         let reviewSummary = "";
         try {
             reviewSummary = document.body.querySelector('.a-section.a-spacing-medium > span.a-size-base').innerText.trim();
