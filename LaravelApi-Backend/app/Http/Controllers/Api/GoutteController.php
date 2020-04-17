@@ -86,8 +86,17 @@ class GoutteController extends Controller
         }
 
         $pageNumber = $request->input('pageNumber');
+        $reviewerType = $request->input('reviewerType');
+        $filterByStar = $request->input('filterByStar');
+        
+        $url = 'https://www.amazon.com/product-reviews/' . $id . 
+                    "?pageNumber=" . $pageNumber .
+                    "&reviewerType=" . $reviewerType .
+                    "&filterByStar=" . $filterByStar .
+                    "&sortBy=recent";
 
-        $html = file_get_html('https://www.amazon.com/product-reviews/' . $id . "?pageNumber=" . $pageNumber);
+        $html = file_get_html($url);
+
         $array = array();
         
         foreach($html->find('.review') as $element) {
@@ -139,7 +148,13 @@ class GoutteController extends Controller
             $array[] = $collection;
         }
 
+        $reviewSummary = "";
+        foreach($html->find('.a-section.a-spacing-medium > span.a-size-base') as $element) {
+            $reviewSummary = $element->plaintext;
+        }
+        
         return response()->json([
+            'reviewSummary' => $reviewSummary,
             'reviews' => $array
         ], 200);
     }

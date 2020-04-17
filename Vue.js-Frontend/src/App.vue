@@ -3,6 +3,7 @@
         <div class="col-md-12">
             <br /><br />
             <h3>Amazon Review Scrapper</h3>
+            <br /><br />
 
             <div class="row navigation col-md-12">
               <div class="search col-md-6">
@@ -18,7 +19,26 @@
               </div>
             </div>
 
-            <div v-for="(review, index) in reviews" :key="index" class="col-md-12">
+            <div class="row navigation col-md-12">
+              <span style="margin-right:30px;">Filter By : </span>
+              <select v-model="reviewerType" style="margin-right:30px;" @change="onChangeReview">
+                <option value="all_reviews">All Reviewers</option>
+                <option value="avp_only_reviews">Verified Only</option>
+              </select>
+              <select v-model="filterByStar" @change="onChangeStar">
+                <option value="all_star">All stars</option>
+                <option value="one_star">1 star</option>
+                <option value="two_star">2 star</option>
+                <option value="three_star">3 star</option>
+                <option value="four_star">4 star</option>
+                <option value="five_star">5 star</option>
+              </select>
+              <span class="col-md" style="text-align:right;">
+              {{ reviewSummary  }}
+              </span>
+            </div>
+
+            <div v-for="(review, index) in reviews" :key="index" style="margin-top:60px;">
               <div class="row col-md-12">
                 <div class="col-md-3 coldata">
                   Date : {{ review.date | formatDate}}
@@ -62,19 +82,29 @@ export default {
   name: "app",
   data() {
     return {
-      asin: 'B003BEDQL2', //default
+      asin: 'B003BEDQL2', //default ASIN
       reviews: [],
-      pageNumber : 1
+      pageNumber : 1,
+      reviewerType : "all_reviews",
+      filterByStar : "all_star",
+      reviewSummary : ""
     };
   },
   methods: {
     /* eslint-disable */
     getList() {
       this.reviews = [];
+      this.reviewSummary = "";
       http
-        .get("/review/" + this.asin + "?pageNumber=" + this.pageNumber)
+        .get("/review/" + this.asin + 
+          "?pageNumber=" + this.pageNumber + 
+          "&reviewerType=" + this.reviewerType +
+          "&filterByStar=" + this.filterByStar
+        )
         .then(response => {
-          this.reviews = response.data.reviews.sort((a, b) => new Date(b.date) - new Date(a.date))
+          // this.reviews = response.data.reviews.sort((a, b) => new Date(b.date) - new Date(a.date))
+          this.reviews = response.data.reviews
+          this.reviewSummary = response.data.reviewSummary
         })
         .catch(e => {
           console.log(e);
@@ -98,6 +128,14 @@ export default {
       if (this.pageNumber >= 1) {
         this.getList();
       }
+    },
+    onChangeReview(event) {
+      console.log(event.target.value);
+      this.getList();
+    },
+    onChangeStar(event) {
+      console.log(event.target.value);
+      this.getList();
     }
   },
   mounted() {
@@ -138,7 +176,7 @@ export default {
 }
 
 .navigation {
-  margin : 60px 0px;
+  margin : 20px 0px;
 }
 .search {
   text-align: left;
