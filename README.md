@@ -11,7 +11,7 @@ I create 2 backend version :
 2. Laravel 7
 
 - composer install
-- copy .env.example to .env and adjust your database name on .env file
+- copy .env.example to .env and adjust your database config on .env file
 - run php artisan key:generate
 - run php artisan migrate --seed
 - run php artisan serve
