@@ -14,13 +14,19 @@ I create 2 backend version :
 - run php artisan migrate --seed
 - run php artisan serve
 
+note : only 1 backend can run in same time because using same port 8000
 
-Frontend :
 
-Vue.js Client: 
+Vue.js Frontend: 
 
 - npm install
 - npm run serve
 
 
 Open Browser with Url: http://localhost:4200/
+
+Todo : 
+- Database interaction
+- Queue Task
+- cron job
+
