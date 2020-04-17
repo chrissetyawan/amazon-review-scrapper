@@ -27,8 +27,9 @@ Vue.js Frontend:
 
 ![Test Image 1](simple-scrapper.png)
 
+
 Todo : 
 - Database interaction
-- Queue Task
+- Queue / Asynchronous Task
 - Cron job
 
