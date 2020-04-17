@@ -1,3 +1,5 @@
+Simple Amazon Review Scrapper based on ASIN
+
 I create 2 backend version :
 
 1. Node.js Server: 
@@ -22,6 +24,8 @@ Vue.js Frontend:
 - npm install
 - npm run serve
 - Open Browser with Url: http://localhost:4200/
+
+![Test Image 1](simple-scrapper.png)
 
 Todo : 
 - Database interaction
