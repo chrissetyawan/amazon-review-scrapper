@@ -37,7 +37,7 @@
               {{ reviewSummary  }}
               </span>
             </div>
-
+            <br /><hr />
             <div v-for="(review, index) in reviews" :key="index" style="margin-top:60px;">
               <div class="row col-md-12">
                 <div class="col-md-3 coldata">
@@ -69,6 +69,7 @@
                 </div>
                 <p class="content"> {{ review.body }} </p>
               </div>
+              <hr />
             </div>
 
         </div>
