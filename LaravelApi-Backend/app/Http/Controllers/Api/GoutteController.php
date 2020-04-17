@@ -148,11 +148,8 @@ class GoutteController extends Controller
             $array[] = $collection;
         }
 
-        $reviewSummary = "";
-        foreach($html->find('.a-section.a-spacing-medium > span.a-size-base') as $element) {
-            $reviewSummary = $element->plaintext;
-        }
-        
+        $reviewSummary = $html->getElementById("filter-info-section")->childNodes(0)->plaintext;
+
         return response()->json([
             'reviewSummary' => $reviewSummary,
             'reviews' => $array
