@@ -23,6 +23,8 @@ Vue.js Frontend:
 - npm run serve
 - Open Browser with Url: http://localhost:4200/
 
+![Test Image 1](simple-scrapper.png)
+
 Todo : 
 - Database interaction
 - Queue Task
