@@ -132,15 +132,18 @@ export default {
     },
     onChangeReview(event) {
       console.log(event.target.value);
+      this.pageNumber = 1;
       this.getList();
     },
     onChangeStar(event) {
       console.log(event.target.value);
+      this.pageNumber = 1;
       this.getList();
     }
   },
   mounted() {
     this.$nextTick(() => {
+      this.pageNumber = 1;
       this.getList();
     })
     
