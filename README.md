@@ -30,5 +30,5 @@ Vue.js Frontend:
 Todo : 
 - Database interaction
 - Queue Task
-- cron job
+- Cron job
 
