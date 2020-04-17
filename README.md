@@ -21,9 +21,7 @@ Vue.js Frontend:
 
 - npm install
 - npm run serve
-
-
-Open Browser with Url: http://localhost:4200/
+- Open Browser with Url: http://localhost:4200/
 
 Todo : 
 - Database interaction
