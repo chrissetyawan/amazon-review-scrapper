@@ -5,19 +5,25 @@ I create 2 backend version :
 1. Node.js Server: 
 
 ```
-- configure database config on \app\config\env.js
+
+configure database config on \app\config\env.js
+
 $ npm install
 $ npm start
+
 ```
 
 2. Laravel 7
 
 ```
-- copy .env.example to .env and adjust your database config on .env file
+
+copy .env.example to .env and adjust your database config on .env file
+
 $ composer install
 $ php artisan key:generate
 $ php artisan migrate --seed
 $ php artisan serve
+
 ```
 
 note : only 1 backend can run in same time because using same port 8000
@@ -26,9 +32,12 @@ note : only 1 backend can run in same time because using same port 8000
 Vue.js Frontend: 
 
 ```
+
 $ npm install
 $ npm run serve
-- Open Browser with Url: http://localhost:4200/
+
+Open Browser with Url: http://localhost:4200/
+
 ```
 
 ![Screenshoot](simple-scrapper.png)
