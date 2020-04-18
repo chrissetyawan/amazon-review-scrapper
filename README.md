@@ -1,4 +1,4 @@
-Simple Amazon Review Scrapper based on ASIN
+Simple Amazon Review Scrapper based on ASIN value
 
 I create 2 backend version :
 
@@ -28,8 +28,8 @@ $ php artisan serve
 ```
 
 note : 
-- only 1 backend can run in same time because using same port 8000
-- both backend have same API response structure and content 
+- Only 1 backend can be run in same time because using same port 8000
+- Both backend have same API response structure and content 
 
 
 Vue.js Frontend: 
@@ -48,8 +48,7 @@ Open Browser with Url: http://localhost:4200/
 
 Todo : 
 - Responsive Layout
-- Using real pagination component and pull from DB
 - Store to DB when scrapping finished
+- Using real pagination component and pulled from DB
 - Queue / Asynchronous Task
 - Cron job
-
