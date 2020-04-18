@@ -1,7 +1,7 @@
 {
-  "name": "vue-nodejs-restapis-mysql",
+  "name": "amazonscrapper",
   "version": "1.0.0",
-  "description": "Nodejs-Rest-APIs-Sequelize-MySQL",
+  "description": "Nodejs Amazon Scrapper",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,7 +20,7 @@
     "express": "^4.16.4",
     "multer": "^1.4.2",
     "mysql2": "^1.6.4",
-    "puppeteer": "^2.1.1",
+    "puppeteer": "^3.0.0",
     "sequelize": "^4.42.0"
   }
 }

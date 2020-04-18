@@ -4,11 +4,14 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json())
 
 const cors = require('cors')
-const corsOptions = {
-  origin: 'http://localhost:4200',
-  optionsSuccessStatus: 200
-}
-app.use(cors(corsOptions))
+app.use(cors())
+// const corsOptions = {
+//   // origin: 'http://localhost:4200',
+//   origin: 'http://45.76.157.202/4200',
+//   optionsSuccessStatus: 200
+// }
+// app.use(cors(corsOptions))
+
 
 const db = require('./app/config/db.config.js');
 

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
-include_once(app_path() . '\simple_html_dom.php');
+include_once(app_path() . '/simple_html_dom.php');
 
 class GoutteController extends Controller
 {
@@ -148,7 +148,14 @@ class GoutteController extends Controller
             $array[] = $collection;
         }
 
-        $reviewSummary = $html->getElementById("filter-info-section")->childNodes(0)->plaintext;
+        $reviewSummary = [];
+
+        if ($html->getElementById("filter-info-section"))
+            $reviewSummary = $html->getElementById("filter-info-section")->childNodes(0)->plaintext;
+
+        $html->clear();
+        $html = null;
+        unset($html);
 
         return response()->json([
             'reviewSummary' => $reviewSummary,

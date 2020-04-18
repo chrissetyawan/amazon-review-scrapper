@@ -19,6 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group([], function () {
-    Route::apiResource('books', 'Api\Books\BooksController');
-    Route::apiResource('review', 'API\GoutteController');
+    Route::get('/', function () {
+        return response()->json('Welcome to Laravel 7 API', 200);
+    });
+    Route::apiResource('review', 'Api\GoutteController');
+    // Route::apiResource('books', 'Api\Books\BooksController');
 });
