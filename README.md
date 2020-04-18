@@ -22,6 +22,7 @@ copy .env.example to .env and adjust your database config on .env file
 $ composer install
 $ php artisan key:generate
 $ php artisan migrate --seed
+$ sudo chmod 777 storage/ -R            # if using linux
 $ php artisan serve
 
 ```
