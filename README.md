@@ -27,7 +27,9 @@ $ php artisan serve
 
 ```
 
-note : only 1 backend can run in same time because using same port 8000
+note : 
+- only 1 backend can run in same time because using same port 8000
+- the API response structure and content will be same for both backend
 
 
 Vue.js Frontend: 
@@ -45,7 +47,9 @@ Open Browser with Url: http://localhost:4200/
 
 
 Todo : 
-- Database interaction
+- Responsive Layout
+- Using real pagination component
+- Store to DB when scrapping finished
 - Queue / Asynchronous Task
 - Cron job
 
