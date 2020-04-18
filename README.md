@@ -2,7 +2,7 @@ Simple Amazon Review Scrapper based on ASIN value
 
 I create 2 backend version :
 
-1. Node.js (using puppeteer library for scrapping)
+1. Node.js
 
 ```
 
@@ -13,7 +13,7 @@ $ npm run start
 
 ```
 
-2. Laravel 7 (using simple_html_dom library for scrapping)
+2. Laravel 7.0
 
 ```
 
