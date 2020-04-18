@@ -9,7 +9,7 @@ I create 2 backend version :
 configure database config on \app\config\env.js
 
 $ npm install
-$ npm start
+$ npm run start
 
 ```
 
