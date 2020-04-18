@@ -38,40 +38,49 @@
               </span>
             </div>
             <br /><hr />
-            <div v-for="(review, index) in reviews" :key="index" style="margin-top:60px;">
-              <div class="row col-md-12">
-                <div class="col-md-3 coldata">
-                  Date : {{ review.date | formatDate}}
-                </div>
-                <div class="col-md-3 coldata">
-                  <a v-bind:href="review.authorLink" target="_blank">
-                   Author: {{ review.author }}
-                  </a>
-                </div>
-                <div class="col-md coldata" style="text-align: right;">
-                   Verified: {{ review.verified | formatBoolean }}
-                </div>
-                <div class="col-md coldata" style="text-align: right;">
-                   Photo : {{ review.pictureIncluded  | formatBoolean }}
-                </div>
-                <div class="col-md coldata" style="text-align: right;">
-                   Rating: {{ review.rating }}
-                </div>
-                <div class="col-md-2 coldata" style="text-align: right;">
-                  Comment Count:  {{ review.commentCount }}
-                </div>
+            <div v-if="loading">
+              Loading...
+            </div>
+            <div v-else>
+            <div v-if="reviews">
+              <div v-for="(review, index) in reviews" :key="index" style="margin-top:60px;">
+                  <div class="row col-md-12">
+                    <div class="col-md-3 coldata">
+                      Date : {{ review.date | formatDate}}
+                    </div>
+                    <div class="col-md-3 coldata">
+                      <a v-bind:href="review.authorLink" target="_blank">
+                      Author: {{ review.author }}
+                      </a>
+                    </div>
+                    <div class="col-md coldata" style="text-align: right;">
+                      Verified: {{ review.verified | formatBoolean }}
+                    </div>
+                    <div class="col-md coldata" style="text-align: right;">
+                      Photo : {{ review.pictureIncluded  | formatBoolean }}
+                    </div>
+                    <div class="col-md coldata" style="text-align: right;">
+                      Rating: {{ review.rating }}
+                    </div>
+                    <div class="col-md-2 coldata" style="text-align: right;">
+                      Comment Count:  {{ review.commentCount }}
+                    </div>
+                  </div>
+                  <div>
+                    <div class="title">
+                      <a v-bind:href="review.reviewLink" target="_blank">
+                      {{ review.title }}
+                      </a>
+                    </div>
+                    <p class="content"> {{ review.body }} </p>
+                  </div>
+                  <hr />
+                  </div>
               </div>
               <div>
-                <div class="title">
-                  <a v-bind:href="review.reviewLink" target="_blank">
-                   {{ review.title }}
-                  </a>
-                </div>
-                <p class="content"> {{ review.body }} </p>
+                  Data is Empty
               </div>
-              <hr />
             </div>
-
         </div>
     </div>
 </template>
@@ -83,6 +92,7 @@ export default {
   name: "app",
   data() {
     return {
+      loading : false,
       asin: 'B003BEDQL2', //default ASIN
       reviews: [],
       pageNumber : 1,
@@ -96,6 +106,7 @@ export default {
     getList() {
       this.reviews = [];
       this.reviewSummary = "";
+      this.loading = true
       http
         .get("/review/" + this.asin + 
           "?pageNumber=" + this.pageNumber + 
@@ -106,9 +117,11 @@ export default {
           // this.reviews = response.data.reviews.sort((a, b) => new Date(b.date) - new Date(a.date))
           this.reviews = response.data.reviews
           this.reviewSummary = response.data.reviewSummary
+          this.loading = false
         })
         .catch(e => {
           console.log(e);
+          this.loading = false
         });
     },
     search() {
