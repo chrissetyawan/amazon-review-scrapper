@@ -78,7 +78,7 @@
                   </div>
               </div>
               <div>
-                  Data is Empty
+                  No Data
               </div>
             </div>
         </div>
