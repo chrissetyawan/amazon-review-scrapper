@@ -22,6 +22,6 @@ Route::group([], function () {
     Route::get('/', function () {
         return response()->json('Welcome to Laravel 7 API', 200);
     });
-    Route::apiResource('review', 'Api\GoutteController');
+    Route::apiResource('review', 'Api\ReviewController');
     // Route::apiResource('books', 'Api\Books\BooksController');
 });

@@ -1,8 +1,7 @@
 const db = require('../config/db.config.js');
-const Review = db.reviews;
+// const Review = db.reviews;
 const puppeteer = require('puppeteer');
 
-// Find a data by Id
 exports.findById = async (req, res) => {
     const id = req.params.id;
     const pageNumber = req.query.pageNumber;
@@ -24,7 +23,7 @@ exports.findById = async (req, res) => {
     const page = await browser.newPage();
     await page.setViewport({ width: 1920, height: 926 });
     await page.goto(url);
-    await page.waitForSelector('body');
+    // await page.waitForSelector('body');
 
     let data = await page.evaluate( async () =>  {
         let reviews = [];

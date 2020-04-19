@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 include_once(app_path() . '/simple_html_dom.php');
 
-class GoutteController extends Controller
+class ReviewController extends Controller
 {
     public function index()
     {
