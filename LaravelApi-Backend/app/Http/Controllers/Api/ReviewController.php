@@ -148,7 +148,7 @@ class ReviewController extends Controller
             $array[] = $collection;
         }
 
-        $reviewSummary = [];
+        $reviewSummary = "";
 
         if ($html->getElementById("filter-info-section"))
             $reviewSummary = $html->getElementById("filter-info-section")->childNodes(0)->plaintext;
